@@ -38,7 +38,7 @@ Expected output:
 
 Screenshot proof:
 
-success.png
+![Success Proof](success.png)
 
 ---
 
@@ -55,7 +55,7 @@ HTTP/1.1 503
 
 Screenshot proof:
 
-failure.png
+![Failure Proof](failure.png)
 
 ---
 
