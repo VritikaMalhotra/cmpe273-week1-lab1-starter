@@ -1,0 +1,6 @@
+# Python virtual environments
+venv/
+**/venv/
+
+# macOS junk
+.DS_Store

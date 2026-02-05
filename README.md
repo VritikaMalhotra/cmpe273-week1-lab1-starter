@@ -1,26 +1,67 @@
-# CMPE 273 – Week 1 Lab 1: Your First Distributed System (Starter)
+# CMPE 273 – Week 1 Lab 1
+Your First Distributed System
 
-This starter provides two implementation tracks:
-- `python-http/` (Flask + requests)
-- `go-http/` (net/http)
+## How to Run Locally
 
-Pick **one** track for Week 1.
+### Service A (Echo Service)
 
-## Lab Goal
-Build **two services** that communicate over the network:
-- **Service A** (port 8080): `/health`, `/echo?msg=...`
-- **Service B** (port 8081): `/health`, `/call-echo?msg=...` calls Service A
+cd cmpe273-week1-lab1/python-http  
+python3 service_a.py  
 
-Minimum requirements:
-- Two independent processes
-- HTTP (or gRPC if you choose stretch)
-- Basic logging per request (service name, endpoint, status, latency)
-- Timeout handling in Service B
-- Demonstrate independent failure (stop A; B returns 503 and logs error)
+Service A runs on http://127.0.0.1:8080
 
-## Deliverables
-1. Repo link
-2. README updates:
-   - how to run locally
-   - success + failure proof (curl output or screenshot)
-   - 1 short paragraph: “What makes this distributed?”
+---
+
+### Service B (Client Service)
+
+cd cmpe273-week1-lab1/python-http  
+python3 service_b.py  
+
+Service B runs on http://127.0.0.1:8081
+
+---
+
+## Success Proof
+
+### Service B calling Service A
+
+curl "http://127.0.0.1:8081/call-echo?msg=hello"
+
+Expected output:
+
+{
+  "service_b": "ok",
+  "service_a_response": {
+    "echo": "hello"
+  }
+}
+
+Screenshot proof:
+
+success.png
+
+---
+
+## Failure Proof
+
+### Service A stopped, Service B still running
+
+curl -i "http://127.0.0.1:8081/call-echo?msg=hello"
+
+Expected output:
+
+HTTP/1.1 503  
+{"error":"Service A unavailable"}
+
+Screenshot proof:
+
+failure.png
+
+---
+
+## What Makes This Distributed?
+
+This system is distributed because Service A and Service B run as independent
+processes and communicate over the network using HTTP. Each service can fail
+independently, and Service B handles failures using timeouts and proper error
+responses when Service A is unavailable.
