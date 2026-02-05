@@ -21,7 +21,7 @@ Service B runs on http://127.0.0.1:8081
 
 ---
 
-## Success Proof
+## Success
 
 ### Service B calling Service A
 
@@ -36,13 +36,13 @@ Expected output:
   }
 }
 
-Screenshot proof:
+Screenshot:
 
-![Success Proof](success.png)
+![Success](success.png)
 
 ---
 
-## Failure Proof
+## Failure
 
 ### Service A stopped, Service B still running
 
@@ -53,9 +53,9 @@ Expected output:
 HTTP/1.1 503  
 {"error":"Service A unavailable"}
 
-Screenshot proof:
+Screenshot:
 
-![Failure Proof](failure.png)
+![Failure](failure.png)
 
 ---
 
