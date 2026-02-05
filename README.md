@@ -61,7 +61,4 @@ failure.png
 
 ## What Makes This Distributed?
 
-This system is distributed because Service A and Service B run as independent
-processes and communicate over the network using HTTP. Each service can fail
-independently, and Service B handles failures using timeouts and proper error
-responses when Service A is unavailable.
+This system is distributed because it consists of two separate services running as independent processes that communicate with each other over the network using HTTP. Since the services are decoupled, one service can fail without bringing down the other. When Service A is unavailable, Service B continues running and handles the failure gracefully using timeouts and appropriate error responses.
